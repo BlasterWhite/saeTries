@@ -45,7 +45,7 @@ int main() {
     table tabloAleatoire = {55, 97, 45, 12, 3, 77, 29, 31, 82, 48}; // Liste de nombre aléatoire
     table tabloCroissant = {3, 12, 29, 31, 45, 48, 55, 77, 82, 97}; // Liste de nombre classé en ordre croissant
     table tabloDecroissant = {97, 82, 77, 55, 48, 45, 31, 29, 12, 3};// Liste de nombre classé en ordre decroissant
-    printf("          TRI BULLES          \n\n");
+    printf("          TRI SHAKER          \n\n");
     printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
     printf("tableau avant tri : \n");
     affiche(tabloAleatoire);

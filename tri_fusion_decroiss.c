@@ -25,7 +25,7 @@ void fusion(table tableau, int debutDeuxiemeMoitier, int finPremiereMoitier, int
         } else if (compt2 == (finDuTableau+1)) {
             tableau[i] = table1[compt1 - debutDeuxiemeMoitier]; // Si le compteur2 est arrivé a la fin du tableau trié 2 on met compteur1 valeur du tableau 1 a la suite du tableau final
             compt1++;
-        }else if (table1[compt1 - debutDeuxiemeMoitier] < tableau[compt2]){// Si la premiere valeur du tableau trie 1 et plus petite que la première valeur du tableau trie 2 alors on la met a l'indice i du tableau final
+        }else if (table1[compt1 - debutDeuxiemeMoitier] > tableau[compt2]){// Si la premiere valeur du tableau trie 1 et plus petite que la première valeur du tableau trie 2 alors on la met a l'indice i du tableau final
             tableau[i] = table1[compt1 - debutDeuxiemeMoitier];
             compt1++;
         } else { // Si aucune des autre condition a marche c'est que la premiere valeur du tableau trie 2 et plus petite que la première valeur du tableau trie 1 donc on la met a l'indice i du tableau final
