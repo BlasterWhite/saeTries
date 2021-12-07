@@ -1,21 +1,18 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define N 10
-typedef int table[N];
+#define MAX 10
 
-void bulle_decroiss (table t)
-{
-    int i = 0;
-    int trie = 0;
-    int temp;
-    while (trie == 0)
-    {
+typedef int table[MAX];
+
+void bulle_croiss (table t) {
+    int i = 0; // indice du nombre d"éléments déjà trié
+    int trie = 0; // Dit si le trie est fini
+    int temp; // variable temporaire pour l'echange de place
+    while (trie == 0) {
         trie = 1;
-        for (int a = 1; a < N-i; a++)
-        {
-            if (t[a] > t[a-1])
-            {
+        for (int a = 1; a < MAX-i; a++) {
+            if (t[a] > t[a-1]) {
                 trie = 0;
                 temp = t[a];
                 t[a] = t[a-1];
@@ -26,31 +23,36 @@ void bulle_decroiss (table t)
     }
 }
 
-
-void affiche(table t)
-{
-    for (int i = 0; i < N; i++)
-    {
+void affiche(table t) {
+    for (int i = 0; i < MAX; i++) {
         printf("%d ",t[i]);
     }
     printf("\n");
 }
 
-int main()
-{
-    table tab = {10,6,78,40,45,64,12,1,0,40};
-    table tab_croiss = {0,2,4,8,14,15,81,86,90,99};
-    table tab_decroiss = {90,80,74,50,26,24,13,12,10,1};
-    affiche(tab);
-    affiche(tab_croiss);
-    affiche(tab_decroiss);
-    printf("------------------------- triées ----------------------------------\n");
-    bulle_decroiss(tab);
-    bulle_decroiss(tab_croiss);
-    bulle_decroiss(tab_decroiss);
-    affiche(tab);
-    affiche(tab_croiss);
-    affiche(tab_decroiss);
+int main() {
+    table tabloAleatoire = {55, 97, 45, 12, 3, 77, 29, 31, 82, 48}; // Liste de nombre aléatoire
+    table tabloCroissant = {3, 12, 29, 31, 45, 48, 55, 77, 82, 97}; // Liste de nombre classé en ordre croissant
+    table tabloDecroissant = {97, 82, 77, 55, 48, 45, 31, 29, 12, 3};// Liste de nombre classé en ordre decroissant
+    printf("          TRI BULLES          \n\n");
+    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    printf("tableau avant tri : \n");
+    affiche(tabloAleatoire);
+    bulle_croiss(tabloAleatoire);
+    printf("tableau après tri : \n");
+    affiche(tabloAleatoire);
+    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    printf("tableau avant tri : \n");
+    affiche(tabloCroissant);
+    bulle_croiss(tabloCroissant);
+    printf("tableau après tri : \n");
+    affiche(tabloCroissant);
+    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    printf("tableau avant tri : \n");
+    affiche(tabloDecroissant);
+    bulle_croiss(tabloDecroissant);
+    printf("tableau après tri : \n");
+    affiche(tabloDecroissant);
+    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
     return EXIT_SUCCESS;
-    
 }

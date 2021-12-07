@@ -6,16 +6,13 @@
 typedef int table[MAX];
 
 void bulle_croiss (table t) {
-    int i = 0;
-    int trie = 0;
-    int temp;
-    while (trie == 0)
-    {
+    int i = 0; // indice du nombre d"éléments déjà trié
+    int trie = 0; // Dit si le trie est fini
+    int temp; // variable temporaire pour l'echange de place
+    while (trie == 0) {
         trie = 1;
-        for (int a = 1; a < MAX-i; a++)
-        {
-            if (t[a] < t[a-1])
-            {
+        for (int a = 1; a < MAX-i; a++) {
+            if (t[a] < t[a-1]) {
                 trie = 0;
                 temp = t[a];
                 t[a] = t[a-1];
@@ -26,21 +23,17 @@ void bulle_croiss (table t) {
     }
 }
 
-void affiche(table t)
-{
-    for (int i = 0; i < MAX; i++)
-    {
+void affiche(table t) {
+    for (int i = 0; i < MAX; i++) {
         printf("%d ",t[i]);
     }
     printf("\n");
 }
 
-int main()
-{
-
-    table tabloAleatoire = {55, 97, 45, 12, 3, 77, 29, 31, 82, 48};
-    table tabloCroissant = {3, 12, 29, 31, 45, 48, 55, 77, 82, 97};
-    table tabloDecroissant = {97, 82, 77, 55, 48, 45, 31, 29, 12, 3};
+int main() {
+    table tabloAleatoire = {55, 97, 45, 12, 3, 77, 29, 31, 82, 48}; // Liste de nombre aléatoire
+    table tabloCroissant = {3, 12, 29, 31, 45, 48, 55, 77, 82, 97}; // Liste de nombre classé en ordre croissant
+    table tabloDecroissant = {97, 82, 77, 55, 48, 45, 31, 29, 12, 3};// Liste de nombre classé en ordre decroissant
     printf("          TRI BULLES          \n\n");
     printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
     printf("tableau avant tri : \n");
@@ -62,5 +55,4 @@ int main()
     affiche(tabloDecroissant);
     printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
     return EXIT_SUCCESS;
-    
 }
