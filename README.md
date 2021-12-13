@@ -17,7 +17,7 @@ int tabloAleatoire[MAX] = {97, 82, 77, 55, 48, 45, 31, 29, 12, 3};
 ```
 ---
 ## Etape 1 :
-### Consigne :
+### Consignes :
 - Pour chaque algorithme de tri qui vous sont attribués, écrivez le programme
 correspondant en C. Votre programme doit être capable de trier un tableau
 d’entiers par ordre croissant des valeurs.
@@ -29,3 +29,20 @@ Ne vous contentez pas d’un seul test d’exécution ! Vous devrez tester vos
 programmes de tri par ordre croissant dans le  cas  moyen  (cas  général) mais
 aussi dans le  cas favorable  (quand le tableau est déjà trié) et dans le  cas
 défavorable (quand le tableau est trié par ordre décroissant.)
+
+## Etape 2 :
+### Consignes : 
+- Écrivez de nouvelles versions de vos programmes : ils doivent désormais être capables
+de trier un tableau de 500 000 entiers. Pour cela vous écrirez une procédure qui remplit
+le tableau d’entiers avec des valeurs aléatoires comprises entre 1 et 10*RAND_MAX.
+Refaites les mêmes tests que dans la partie 1 (cas moyen, favorable et défavorable).
+
+## Etape 3 :
+### Consignes : 
+- Écrivez une troisième version de vos programmes pour qu’ils soient capables de trier un
+tableaux de 150 000 chaînes de caractères.
+- Vous écrirez une procédure qui remplit le tableau avec des chaînes construites de
+manière aléatoire et dont la longueur sera comprise aléatoirement entre 5 et 10
+caractères. Vos chaînes ne seront composées que de lettres minuscules, donc comprises
+entre le caractère ‘a’ (de code 97) et le caractère ‘z’ (de code 122).
+Refaites les mêmes tests que dans la partie 1 (cas moyen, favorable et défavorable).
