@@ -62,14 +62,9 @@ void afficheTab(table tabAlea, table tabAsc, table tabDesc) {
     }
     for (int j = i; j < TABLE_MAX; j++)
     {
-        printf("%12ld\n",tabAlea[i]);
+        printf("%12ld\n",tabAlea[j]);
     }
     
-
-    
-    for (long i = 0; i < TABLE_MAX; i++) {
-        
-    }
 }
 
 void genere_Aleatoire(table tab) {
