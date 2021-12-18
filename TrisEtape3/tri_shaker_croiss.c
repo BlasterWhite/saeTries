@@ -3,7 +3,7 @@
 #include <time.h>
 #include <string.h>
 
-#define TAB_MAX 150000
+#define TAB_MAX 1500
 #define TAILLE_CHAINE 11
 
 typedef char t_chaine[TAILLE_CHAINE];
@@ -36,7 +36,6 @@ void afficher(t_tab_chaine tab) {
 }
 
 void permute(t_chaine t1, t_chaine t2) {
-    printf("PERMUTE\n");
     t_chaine temp;
     strcpy(temp, t1);
     strcpy(t1,t2);
@@ -50,6 +49,7 @@ void shaker_croiss (t_tab_chaine t) {
         trie = 1;
         for (int a = i+1; a < TAB_MAX-i; a++) { // On fait monter le plus grands nombre du tableau
            if (strcmp(t[a],t[a-1]) < 0) {
+               printf("PERMUTE %d et %d\n", a, a-1);
                 trie = 0; // Dit que le trie n'est pas terminé si il y a du changement
                 permute(t[a],t[a-1]);
             }
@@ -57,8 +57,9 @@ void shaker_croiss (t_tab_chaine t) {
         if (trie == 0) {
             for (int b = TAB_MAX-i-2; b >= i; b--) { // On fait descendre le plus petit nombre du tableau
                 if (strcmp(t[b],t[b-1]) > 0) {
+                    printf("PERMUTE %d et %d\n", b, b+1);
                     trie = 0; // Dit que le trie n'est pas terminé si il y b du changement
-                    permute(t[b],t[b-1]);
+                    permute(t[b],t[b+1]);
                 }
             }
         }

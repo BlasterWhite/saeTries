@@ -1,31 +1,66 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
+#include <string.h>
 
-#define MAX 10
+#define TAB_MAX 150
+#define TAILLE_CHAINE 11
 
-typedef int table[MAX];
+typedef char t_chaine[TAILLE_CHAINE];
+typedef t_chaine t_tab_chaine[TAB_MAX];
 
-void shaker_decroiss (table t) {
+char char_alea() {
+    return (rand() % 26)+97; // Génération d'un nombre aléatoire de 97 à 122 (97+25 MAX) | pour le charactere ASCII
+}
+
+int nb_alea() {
+    return (rand() % (TAILLE_CHAINE-5))+5; // Nombre aléatoire en 5 à 10 | Pour longueur du string
+}
+
+void remplir_tab(t_tab_chaine tab) {
+    for (int i = 0; i < TAB_MAX; i++) {
+        int alea = nb_alea(); // Longueur du String
+        for (int j = 0; j < alea; j++) {
+            tab[i][j] = char_alea(); // Génération du charactère ASCII
+            if (j == alea-1) {
+                tab[i][j+1] = '\0'; // Met des espaces pour la fin du String
+            }            
+        }
+    }
+}
+
+void afficher(t_tab_chaine tab) {
+    for (int i = 0; i < TAB_MAX; i++) {
+        printf("%s\n",tab[i]);
+    }
+}
+
+void permute(t_chaine t1, t_chaine t2) {
+    //printf("PERMUTE\n");
+    t_chaine temp;
+    strcpy(temp, t1);
+    strcpy(t1,t2);
+    strcpy(t2,temp);
+}
+
+void shaker_decroiss (t_tab_chaine t) {
     int i = 0; // indice du nombre d"éléments déjà trié
     int trie = 0; // Dit si le trie est fini
-    int temp; // variable temporaire pour l'echange de place
     while (trie == 0) {
         trie = 1;
-        for (int a = i+1; a < MAX-i; a++) { // On fait monter le plus petit nombre du tableau
-            if (t[a] > t[a-1]) {
-                trie = 0;
-                temp = t[a];
-                t[a] = t[a-1];
-                t[a-1] = temp;
+        for (int a = i+1; a < TAB_MAX-i; a++) { // On fait monter le plus grands nombre du tableau
+           if (strcmp(t[a],t[a-1]) < 0) {
+                trie = 0; // Dit que le trie n'est pas terminé si il y a du changement
+                printf("PERMUTE %d et %d\n", a, a-1);
+                permute(t[a],t[a-1]);
             }
         }
         if (trie == 0) {
-            for (int b = MAX-i-2; b >= i; b--) { // On fait descendre le plus grand nombre du tableau
-                if (t[b] < t[b+1]) { 
-                    trie = 0;
-                    temp = t[b];
-                    t[b] = t[b+1];
-                    t[b+1] = temp;
+            for (int b = TAB_MAX-i-2; b >= i; b--) { // On fait descendre le plus petit nombre du tableau
+                if (strcmp(t[b],t[b-1]) > 0) {
+                    trie = 0; // Dit que le trie n'est pas terminé si il y b du changement
+                    printf("PERMUTE %d et %d\n", b, b-1);
+                    permute(t[b],t[b-1]);
                 }
             }
         }
@@ -33,36 +68,11 @@ void shaker_decroiss (table t) {
     }
 }
 
-void affiche(table t) {
-    for (int i = 0; i < MAX; i++) {
-        printf("%d ",t[i]);
-    }
-    printf("\n");
-}
-
 int main() {
-    table tabloAleatoire = {55, 97, 45, 12, 3, 77, 29, 31, 82, 48}; // Liste de nombre aléatoire
-    table tabloCroissant = {3, 12, 29, 31, 45, 48, 55, 77, 82, 97}; // Liste de nombre classé en ordre croissant
-    table tabloDecroissant = {97, 82, 77, 55, 48, 45, 31, 29, 12, 3};// Liste de nombre classé en ordre decroissant
-    printf("          TRI SHAKER          \n\n");
-    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
-    printf("tableau avant tri : \n");
-    affiche(tabloAleatoire);
-    shaker_decroiss(tabloAleatoire);
-    printf("tableau après tri : \n");
-    affiche(tabloAleatoire);
-    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
-    printf("tableau avant tri : \n");
-    affiche(tabloCroissant);
-    shaker_decroiss(tabloCroissant);
-    printf("tableau après tri : \n");
-    affiche(tabloCroissant);
-    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
-    printf("tableau avant tri : \n");
-    affiche(tabloDecroissant);
-    shaker_decroiss(tabloDecroissant);
-    printf("tableau après tri : \n");
-    affiche(tabloDecroissant);
-    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    t_tab_chaine tab;
+    remplir_tab(tab);
+    shaker_decroiss(tab);
+    afficher(tab);
+    printf("%d\n", TAB_MAX);
     return EXIT_SUCCESS;
 }
