@@ -1,11 +1,9 @@
-#include<stdlib.h>
-#include<stdio.h>
-#include <time.h>
-#include<string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 #define TAB_MAX 150000
 #define TAILLE_CHAINE 11
-
 typedef char t_chaine[TAILLE_CHAINE];
 typedef t_chaine t_tab_chaine[TAB_MAX];
 

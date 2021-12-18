@@ -1,11 +1,9 @@
-#include<stdlib.h>
-#include<stdio.h>
-#include <time.h>
-#include<string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 #define TAB_MAX 150000
 #define TAILLE_CHAINE 11
-
 typedef char t_chaine[TAILLE_CHAINE];
 typedef t_chaine t_tab_chaine[TAB_MAX];
 
@@ -38,7 +36,7 @@ void bulle_croiss (t_tab_chaine t) {
      while (trie == 0) {
          trie = 1;
          for (int a = 1; a < TAB_MAX-i; a++) {
-             if (strcmp(t[a],t[a-1]) < 0) {
+             if (strcmp(t[a],t[a-1]) > 0) {
                  //printf("%d\n",a);
                  trie = 0; // Dit que le trie n'est pas terminé si il y a du changement
                  strcpy(temp,t[a]);

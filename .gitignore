@@ -1,11 +1,4 @@
 ## Ne prends pas en compte les fichier .o
 *.o
-tri_bulle_croiss
-tri_bulle_decroiss
-tri_shaker_croiss
-tri_shaker_decroiss
-tri_fusion_croiss
-tri_fusion_decroiss
-250k
-generation_de_500k_entier
 .vscode/
+o/
