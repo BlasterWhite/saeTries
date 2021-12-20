@@ -3,7 +3,7 @@
 #include <time.h>
 #include <string.h>
 
-#define TAB_MAX 150
+#define TAB_MAX 150000
 #define TAILLE_CHAINE 11
 
 typedef char t_chaine[TAILLE_CHAINE];
@@ -49,18 +49,18 @@ void shaker_decroiss (t_tab_chaine t) {
     while (trie == 0) {
         trie = 1;
         for (int a = i+1; a < TAB_MAX-i; a++) { // On fait monter le plus grands nombre du tableau
-           if (strcmp(t[a],t[a-1]) < 0) {
+           if (strcmp(t[a],t[a-1]) > 0) {
                 trie = 0; // Dit que le trie n'est pas terminé si il y a du changement
-                printf("PERMUTE %d et %d\n", a, a-1);
+                //printf("PERMUTE %d et %d\n", a, a-1);
                 permute(t[a],t[a-1]);
             }
         }
         if (trie == 0) {
             for (int b = TAB_MAX-i-2; b >= i; b--) { // On fait descendre le plus petit nombre du tableau
-                if (strcmp(t[b],t[b-1]) > 0) {
+                if (strcmp(t[b],t[b+1]) < 0) {
                     trie = 0; // Dit que le trie n'est pas terminé si il y b du changement
-                    printf("PERMUTE %d et %d\n", b, b-1);
-                    permute(t[b],t[b-1]);
+                    //printf("PERMUTE %d et %d\n", b, b-1);
+                    permute(t[b],t[b+1]);
                 }
             }
         }
@@ -71,6 +71,7 @@ void shaker_decroiss (t_tab_chaine t) {
 int main() {
     t_tab_chaine tab;
     remplir_tab(tab);
+    //afficher(tab);
     shaker_decroiss(tab);
     afficher(tab);
     printf("%d\n", TAB_MAX);

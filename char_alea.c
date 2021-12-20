@@ -31,6 +31,12 @@ void remplir_tab(t_tab_chaine tab) {
     }
 }
 
+void afficher(t_tab_chaine tab) {
+    for (int i = 0; i < TAB_MAX; i++) {
+        printf("%s\n",tab[i]);
+    }
+}
+
 void bulle_croiss (t_tab_chaine t) {
      int i = 0; // indice du nombre d"éléments déjà trié
      int trie = 0; // Dit si le trie est fini
@@ -48,12 +54,6 @@ void bulle_croiss (t_tab_chaine t) {
          }
          i = i+1;
      }
-}
-
-void afficher(t_tab_chaine tab) {
-    for (int i = 0; i < TAB_MAX; i++) {
-        printf("%s\n",tab[i]);
-    }
 }
 
 int main() {

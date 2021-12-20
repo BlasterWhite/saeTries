@@ -1,89 +1,92 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
+#include <string.h>
 #include <stdbool.h>
 
-#define MAX 10
+#define TAB_MAX 150000
+#define TAILLE_CHAINE 11
 
-typedef int table[MAX];
+typedef char t_chaine[TAILLE_CHAINE];
+typedef t_chaine t_tab_chaine[TAB_MAX];
 
-void affiche(table tableau);
+char char_alea() {
+    return (rand() % 26)+97; // Génération d'un nombre aléatoire de 97 à 122 (97+25 MAX) | pour le charactere ASCII
+}
 
-void fusion(table tableau, int debutDeuxiemeMoitier, int finPremiereMoitier, int finDuTableau) {
-    int table1[finPremiereMoitier - debutDeuxiemeMoitier+1];
+int nb_alea() {
+    return (rand() % (TAILLE_CHAINE-5))+5; // Nombre aléatoire en 5 à 10 | Pour longueur du string
+}
+
+void remplir_tab(t_tab_chaine tab) {
+    for (int i = 0; i < TAB_MAX; i++) {
+        int alea = nb_alea(); // Longueur du String
+        for (int j = 0; j < alea; j++) {
+            tab[i][j] = char_alea(); // Génération du charactère ASCII
+            if (j == alea-1) {
+                tab[i][j+1] = '\0'; // Met des espaces pour la fin du String
+            }            
+        }
+    }
+}
+
+void fusion(t_tab_chaine tableau, int debutDeuxiemeMoitier, int finPremiereMoitier, int finDuTableau) {
+    t_tab_chaine table1;
     int debutPremiereMoitier = finPremiereMoitier+1;
     int compt1 = debutDeuxiemeMoitier;
     int compt2 = debutPremiereMoitier;
     int i;
     bool pasTrie = true;
     for(i = debutDeuxiemeMoitier; i <= finPremiereMoitier; i++){
-        table1[i - debutDeuxiemeMoitier] = tableau[i];
+        strcpy(table1[i - debutDeuxiemeMoitier], tableau[i]);
     }
     i = debutDeuxiemeMoitier;
     while ((i <= finDuTableau) && pasTrie){
         if (compt1 == debutPremiereMoitier) { // met que le tableau est trie 
             pasTrie = false;
         } else if (compt2 == (finDuTableau+1)) {
-            tableau[i] = table1[compt1 - debutDeuxiemeMoitier]; // Si le compteur2 est arrivé a la fin du tableau trié 2 on met compteur1 valeur du tableau 1 a la suite du tableau final
+            strcpy(tableau[i], table1[compt1 - debutDeuxiemeMoitier]); // Si le compteur2 est arrivé a la fin du tableau trié 2 on met compteur1 valeur du tableau 1 a la suite du tableau final
             compt1++;
-        }else if (table1[compt1 - debutDeuxiemeMoitier] > tableau[compt2]){// Si la premiere valeur du tableau trie 1 et plus petite que la première valeur du tableau trie 2 alors on la met a l'indice i du tableau final
-            tableau[i] = table1[compt1 - debutDeuxiemeMoitier];
+        }else if (strcmp(table1[compt1 - debutDeuxiemeMoitier],tableau[compt2]) > 0 ){
+            strcpy(tableau[i], table1[compt1 - debutDeuxiemeMoitier]);// Si la premiere valeur du tableau trie 1 et plus petite que la première valeur du tableau trie 2 alors on la met a l'indice i du tableau final
             compt1++;
         } else { // Si aucune des autre condition a marche c'est que la premiere valeur du tableau trie 2 et plus petite que la première valeur du tableau trie 1 donc on la met a l'indice i du tableau final
-            tableau[i] = tableau[compt2];
+            strcpy(tableau[i], tableau[compt2]);
             compt2++;
         }
         i++;
     }
 }
 
-void fusion_croiss_recur(table tableau, int debutTableau, int finTableau){
+void fusion_decroiss_recur(t_tab_chaine tableau, int debutTableau, int finTableau){
     int milieu;
     if (debutTableau < finTableau){
         milieu = (finTableau + debutTableau) / 2;
-        fusion_croiss_recur(tableau, debutTableau, milieu);
-        fusion_croiss_recur(tableau, milieu + 1, finTableau);
+        fusion_decroiss_recur(tableau, debutTableau, milieu);
+        fusion_decroiss_recur(tableau, milieu + 1, finTableau);
         fusion(tableau, debutTableau, milieu, finTableau);
         //affiche(tableau); // Pour comprendre les étapes
     }
 }
 
-void fusion_croiss(table tableau){
-    if (MAX > 0){
-        fusion_croiss_recur(tableau, 0, MAX - 1);
+void fusion_decroiss(t_tab_chaine tableau){
+    if (TAB_MAX > 0){
+        fusion_decroiss_recur(tableau, 0, TAB_MAX - 1);
     }
 }
 
 
-void affiche(table tableau) {
-    for (int i = 0; i < MAX; i++) {
-        printf("%d ",tableau[i]);
+void afficher(t_tab_chaine tab) {
+    for (long i = 0; i < TAB_MAX; i++) {
+        printf("%s\n",tab[i]);
     }
-    printf("\n");
 }
 
 int main() {
-    table tabloAleatoire = {55, 97, 45, 12, 3, 77, 29, 31, 82, 48}; // Liste de nombre aléatoire
-    table tabloCroissant = {3, 12, 29, 31, 45, 48, 55, 77, 82, 97}; // Liste de nombre classé en ordre croissant
-    table tabloDecroissant = {97, 82, 77, 55, 48, 45, 31, 29, 12, 3};// Liste de nombre classé en ordre decroissant
-    printf("          TRI FUSION          \n\n");
-    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
-    printf("tableau avant tri : \n");
-    affiche(tabloAleatoire);
-    fusion_croiss(tabloAleatoire);
-    printf("tableau après tri : \n");
-    affiche(tabloAleatoire);
-    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
-    printf("tableau avant tri : \n");
-    affiche(tabloCroissant);
-    fusion_croiss(tabloCroissant);
-    printf("tableau après tri : \n");
-    affiche(tabloCroissant);
-    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
-    printf("tableau avant tri : \n");
-    affiche(tabloDecroissant);
-    fusion_croiss(tabloDecroissant);
-    printf("tableau après tri : \n");
-    affiche(tabloDecroissant);
-    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    t_tab_chaine tab;
+    remplir_tab(tab);
+    fusion_decroiss(tab);
+    afficher(tab);
+    printf("%d\n", TAB_MAX);
     return EXIT_SUCCESS;
 }
