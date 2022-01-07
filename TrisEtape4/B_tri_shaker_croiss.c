@@ -31,7 +31,7 @@ void shaker_croiss (table t, long *comparaison, long *permutation) {
         for (int a = i+1; a < TABLE_MAX-i; a++) { // On fait monter le plus grands nombre du tableau
             *comparaison = *comparaison + 1; // Ajout d'une comparaison
             if (t[a] < t[a-1]) {
-                *permutation = *permutation + 1; // Ajot d'une permutation
+                *permutation = *permutation + 1; // Ajout d'une permutation
                 trie = 0;
                 temp = t[a];
                 t[a] = t[a-1];
@@ -42,7 +42,7 @@ void shaker_croiss (table t, long *comparaison, long *permutation) {
             for (int b = TABLE_MAX-i-2; b >= i; b--) { // On fait descendre le plus petit nombre du tableau
                 *comparaison = *comparaison + 1; // Ajout d'une comparaison
                 if (t[b] > t[b+1]) {
-                    *permutation = *permutation + 1; // Ajot d'une permutation 
+                    *permutation = *permutation + 1; // Ajout d'une permutation 
                     trie = 0;
                     temp = t[b];
                     t[b] = t[b+1];

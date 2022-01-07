@@ -17,7 +17,7 @@ void finMesuresPerf(clock_t t1, long comparaison, long permutation) {
     float temps; // Variable temps
     t2 = clock();
     temps = (float)(t2-t1)/CLOCKS_PER_SEC;
-    printf("        TRI PAR SHAKER        \n\n");
+    printf("        TRI FUSION DECROISSANT        \n\n");
     printf("Temps CPU du tri : %3fs\n\n", temps);
     printf("Nombre de comparaisons : %ld\n\n", comparaison);
     printf("Nombre de Permutation : %ld\n\n", permutation);
