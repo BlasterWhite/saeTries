@@ -55,6 +55,7 @@ void afficher(t_tab_chaine tab) {
 }
 
 int main() {
+    srand( time( NULL ));
     t_tab_chaine t;
     remplir_tab(t);
     bulle_croiss(t);

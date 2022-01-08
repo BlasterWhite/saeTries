@@ -84,6 +84,7 @@ void afficher(t_tab_chaine tab) {
 
 int main() {
     t_tab_chaine tab;
+    srand( time( NULL ));
     remplir_tab(tab);
     fusion_decroiss(tab);
     afficher(tab);
