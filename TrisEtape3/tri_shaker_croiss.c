@@ -69,6 +69,7 @@ void shaker_croiss (t_tab_chaine t) {
 
 int main() {
     t_tab_chaine tab;
+    srand( time( NULL ));
     remplir_tab(tab);
     shaker_croiss(tab);
     afficher(tab);

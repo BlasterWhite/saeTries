@@ -70,6 +70,7 @@ void shaker_decroiss (t_tab_chaine t) {
 
 int main() {
     t_tab_chaine tab;
+    srand( time( NULL ));
     remplir_tab(tab);
     //afficher(tab);
     shaker_decroiss(tab);
