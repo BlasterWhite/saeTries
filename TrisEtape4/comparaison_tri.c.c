@@ -1,13 +1,18 @@
+/**
+* @author Cleo Martin-Colleu et Mateo Guezennec
+**/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 #include <stdbool.h>
 
-#define TABLE_MAX 200000 
+
+#define TABLE_MAX 400000 
 typedef long int table[TABLE_MAX];
 
-void debutMesuresPerf(clock_t t1, long *comparaison, long *permutation) {
-    t1 = clock(); // Enregistre le premier temps
+void debutMesuresPerf(clock_t *t1, long *comparaison, long *permutation) {
+    *t1 = clock(); // Enregistre le premier temps
     *comparaison = 0; // initialise les comparaisons à 0
     *permutation = 0; // initialise les permutations à 0
 }
@@ -18,7 +23,7 @@ void finMesuresPerf(clock_t t1, long comparaison, long permutation, char tri[]) 
     t2 = clock();
     temps = (float)(t2-t1)/CLOCKS_PER_SEC;
     printf("        TRI %s CROISSANT        \n\n",tri);
-    printf("Temps CPU du tri : %3fs\n\n", temps);
+    printf("Temps CPU du tri : %fs\n\n", temps);
     printf("Nombre de comparaisons : %ld\n\n", comparaison);
     printf("Nombre de Permutation : %ld\n\n", permutation);
 }
@@ -226,8 +231,9 @@ int main() {
 
     printf("\n----------------------------------------\naleatoire\n----------------------------------------\n ");
     // tri 1 :
+    
     copier(tab_tri,tab_base);
-    debutMesuresPerf(t1, &nbComp, &nbPerm);
+    debutMesuresPerf(&t1, &nbComp, &nbPerm);
     fusion_croiss(tab_tri, &nbComp, &nbPerm);
     finMesuresPerf(t1, nbComp, nbPerm,"FUSION"); 
     printf("\n");   
@@ -235,7 +241,7 @@ int main() {
 
     // tri 2 :
     copier(tab_tri,tab_base);
-    debutMesuresPerf(t1, &nbComp, &nbPerm);
+    debutMesuresPerf(&t1, &nbComp, &nbPerm);
     shaker_croiss(tab_tri, &nbComp, &nbPerm);
     finMesuresPerf(t1, nbComp, nbPerm,"SHAKER");    
     printf("\n");   
@@ -243,7 +249,7 @@ int main() {
 
     // tri 3 :
     copier(tab_tri,tab_base);
-    debutMesuresPerf(t1, &nbComp, &nbPerm);
+    debutMesuresPerf(&t1, &nbComp, &nbPerm);
     bulle_croiss(tab_tri, &nbComp, &nbPerm);
     finMesuresPerf(t1, nbComp, nbPerm,"BULLES");
     printf("\n");   
@@ -258,7 +264,7 @@ int main() {
     favorable(tab_base,&nbComp, &nbPerm);
     // tri 1 :
     copier(tab_tri,tab_base);
-    debutMesuresPerf(t1, &nbComp, &nbPerm);
+    debutMesuresPerf(&t1, &nbComp, &nbPerm);
     fusion_croiss(tab_tri, &nbComp, &nbPerm);
     finMesuresPerf(t1, nbComp, nbPerm,"FUSION");  
     printf("\n");   
@@ -266,7 +272,7 @@ int main() {
 
     // tri 2 :
     copier(tab_tri,tab_base);
-    debutMesuresPerf(t1, &nbComp, &nbPerm);
+    debutMesuresPerf(&t1, &nbComp, &nbPerm);
     shaker_croiss(tab_tri, &nbComp, &nbPerm);
     finMesuresPerf(t1, nbComp, nbPerm,"SHAKER"); 
     printf("\n");   
@@ -274,7 +280,7 @@ int main() {
 
     // tri 3 :
     copier(tab_tri,tab_base);
-    debutMesuresPerf(t1, &nbComp, &nbPerm);
+    debutMesuresPerf(&t1, &nbComp, &nbPerm);
     bulle_croiss(tab_tri, &nbComp, &nbPerm);
     finMesuresPerf(t1, nbComp, nbPerm,"BULLES");
     printf("\n");   
@@ -288,14 +294,14 @@ int main() {
     defavorable(tab_base,&nbComp, &nbPerm);
     // tri 1 :
     copier(tab_tri,tab_base);
-    debutMesuresPerf(t1, &nbComp, &nbPerm);
+    debutMesuresPerf(&t1, &nbComp, &nbPerm);
     fusion_croiss(tab_tri, &nbComp, &nbPerm);
     finMesuresPerf(t1, nbComp, nbPerm,"FUSION"); 
     printf("\n");   
 
     // tri 2 :
     copier(tab_tri,tab_base);
-    debutMesuresPerf(t1, &nbComp, &nbPerm);
+    debutMesuresPerf(&t1, &nbComp, &nbPerm);
     shaker_croiss(tab_tri, &nbComp, &nbPerm);
     finMesuresPerf(t1, nbComp, nbPerm,"SHAKER");  
     printf("\n");   
@@ -303,7 +309,7 @@ int main() {
 
     // tri 3 :
     copier(tab_tri,tab_base);
-    debutMesuresPerf(t1, &nbComp, &nbPerm);
+    debutMesuresPerf(&t1, &nbComp, &nbPerm);
     bulle_croiss(tab_tri, &nbComp, &nbPerm);
     finMesuresPerf(t1, nbComp, nbPerm,"BULLES");
     printf("\n");   
