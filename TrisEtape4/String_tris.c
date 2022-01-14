@@ -190,5 +190,6 @@ int main() {
     debutMesuresPerf(&t1, &nbComp, &nbPerm);
     fusion_croiss(tabTri, &nbComp, &nbPerm);
     finMesuresPerf(t1, nbComp, nbPerm, "FUSION");
+    //afficher(tabTri);
     return EXIT_SUCCESS;
 }
