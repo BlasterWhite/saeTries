@@ -69,7 +69,7 @@ void fusion_croiss(t_covid tableau, long *comparaison, long *permutation){
 void LireFichier(t_covid t)
 {
     FILE* f;
-    f = fopen("DonneesCovid.data.data","r");
+    f = fopen("DonneesCovid.data.data","rb");
     donnees_covid donnees;
     fread(&donnees, sizeof(donnees_covid),1,f);
     int i = 0;
