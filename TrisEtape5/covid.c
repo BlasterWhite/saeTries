@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
-#define int MAX 17776
+#define MAX 17776
 
 typedef struct{
     int dep;
@@ -16,14 +17,14 @@ typedef donnees_covid t_covid[MAX];
 
 
 void fusion_c(t_covid tableau, int debutDeuxiemeMoitier, int finPremiereMoitier, int finDuTableau, long *comparaison, long *permutation) {
-    t_covid table1[finPremiereMoitier - debutDeuxiemeMoitier+1];
+    donnees_covid table1[finPremiereMoitier - debutDeuxiemeMoitier+1];
     int debutPremiereMoitier = finPremiereMoitier+1;
     int compt1 = debutDeuxiemeMoitier;
     int compt2 = debutPremiereMoitier;
     int i;
     bool pasTrie = true;
     for(i = debutDeuxiemeMoitier; i <= finPremiereMoitier; i++){
-        table1[i - debutDeuxiemeMoitier] = tableau[i].dep;
+        table1[i - debutDeuxiemeMoitier] = tableau[i];
     }
     i = debutDeuxiemeMoitier;
     while ((i <= finDuTableau) && pasTrie){
@@ -75,7 +76,7 @@ void LireFichier(t_covid t)
     int i = 0;
     while (!feof(f))
     {
-        t[i] = donnes;
+        t[i] = donnees;
         fread(&donnees, sizeof(donnees_covid),1,f);
         i = i + 1;
     }
@@ -94,15 +95,15 @@ void afficher(t_covid t)
 {
     for(int i=0; i<MAX; i++)
     {
-        printf("%d %s %d %d %d");
+        printf("%d %s %d %d %d\n",t[i].dep, t[i].date, t[i].pos, t[i].classe, t[i].pop);
     }
 }
 
 int main()
 {
     t_covid tab;
-    LireFichier(t);
-    triDepartement(t);
-    afficher(t);
+    LireFichier(tab);
+    triDepartement(tab);
+    afficher(tab);
     return EXIT_SUCCESS;
 }
