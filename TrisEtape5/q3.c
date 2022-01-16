@@ -157,9 +157,9 @@ int main()
     t_covid tab;
     LireFichier(tab);
     duree = 0;
-    triDepartement(tab);
     debutMesuresPerf(&duree);
-    DebutAnnee35(tab);
+    triDepartement(tab);
+    population22(tab);
     finMesuresPerf(duree);
     return EXIT_SUCCESS;
 }

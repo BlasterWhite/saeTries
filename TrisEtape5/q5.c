@@ -157,7 +157,7 @@ int main()
     t_covid tab;
     LireFichier(tab);
     duree = 0;
-    triDepartement(tab);
+    triDate(tab);
     debutMesuresPerf(&duree);
     DebutAnnee35(tab);
     finMesuresPerf(duree);

@@ -159,7 +159,7 @@ int main()
     duree = 0;
     triDepartement(tab);
     debutMesuresPerf(&duree);
-    DebutAnnee35(tab);
+    population22(tab);
     finMesuresPerf(duree);
     return EXIT_SUCCESS;
 }
